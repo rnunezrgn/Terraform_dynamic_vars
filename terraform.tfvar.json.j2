@@ -1,0 +1,14 @@
+{
+  "environment": "{{ environment }}",
+  "region": "{{ region }}",
+  "instance_count": {{ instance_count }},
+  "tags": {
+    "owner": "{{ owner }}",
+    "managed_by": "ansible"
+  },
+  "allowed_cidrs": [
+    {% for cidr in allowed_cidrs %}
+    "{{ cidr }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
