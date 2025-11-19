@@ -1,6 +1,6 @@
 # Terraform_dynamic_vars
 
-This report describes how Ansible gathers variables from an AAP survey and injects them into Terraform’s variables.tf file to support deployment.
+This simple repo describes how Ansible gathers variables from an AAP survey and injects them into Terraform’s "variables.tf" file to perform deployment.
 
 
 terraform/
