@@ -1,0 +1,24 @@
+---
+- name: Deploy Terraform with JSON variables
+  hosts: localhost
+  vars:
+    environment: "prod"
+    region: "us-east-1"
+    instance_count: 3
+    owner: "devops-team"
+    allowed_cidrs:
+      - "10.0.0.0/16"
+      - "192.168.1.0/24"
+
+  tasks:
+    - name: Task 1 - Render terraform.tfvars.json
+      ansible.builtin.template:
+        src: templates/terraform.tfvars.json.j2
+        dest: ./terraform/terraform.tfvars.json
+
+    - name: Task 2 - Run terraform (init/plan/apply) using the existing JSON file that contains all the new variable values
+      community.general.terraform:
+        project_path: ./terraform
+        state: present         # this is your "terraform apply"
+        variables_files:
+          - terraform.tfvars.json
